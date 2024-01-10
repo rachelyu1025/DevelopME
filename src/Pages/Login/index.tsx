@@ -12,12 +12,19 @@ export const Login = (): JSX.Element => {
     const data = { username: id, password };
 
     postSignInMutation(data);
+
+    handleResetInputs();
+  };
+
+  const handleResetInputs = () => {
+    setId('');
+    setPassword('');
   };
 
   return (
-    <SingInComponent>
+    <SignInComponent>
       {/* Title */}
-      <h1>Sign in</h1>
+      <h1>Sign In</h1>
 
       {/* ID */}
       <label htmlFor="input-id">ID:</label>
@@ -43,11 +50,12 @@ export const Login = (): JSX.Element => {
       <button type="button" onClick={handleSingIn}>
         로그인
       </button>
-    </SingInComponent>
+    </SignInComponent>
   );
 };
 
-const SingInComponent = styled.div`
-  width: '50%';
-  height: 50;
+const SignInComponent = styled.div`
+  width: 99vw;
+  height: 100vh;
+  border: 3px solid;
 `;
