@@ -12,6 +12,7 @@
     "@types/react-dom": "^18.0.0",
     "axios": "^1.6.3",
     "react": "^18.2.0",
+    "react-cookie": "^7.0.1",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
     "react-scripts": "5.0.1",
@@ -62,7 +63,7 @@
     "lint-staged": "^15.2.0",
     "prettier": "^3.1.1"
   },
-  "lint-staged" : {
+  "lint-staged": {
     "*.{js, ts, jsx,tsx}": "eslint --fix"
   }
 }
