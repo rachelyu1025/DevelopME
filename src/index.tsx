@@ -4,8 +4,9 @@ import './index.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { CookiesProvider } from 'react-cookie';
 import { RecoilRoot } from 'recoil';
-import App from './App';
+import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
+import Router from './router/Router';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -18,7 +19,9 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <CookiesProvider defaultSetOptions={{ path: '/' }}>
         <RecoilRoot>
-          <App />
+          <BrowserRouter>
+            <Router />
+          </BrowserRouter>
         </RecoilRoot>
       </CookiesProvider>
     </QueryClientProvider>
