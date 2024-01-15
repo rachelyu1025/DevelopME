@@ -1,18 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { CookiesProvider } from 'react-cookie';
-import { RecoilRoot } from 'recoil';
-import { BrowserRouter } from 'react-router-dom';
-import reportWebVitals from './reportWebVitals';
-import Router from './router/Router';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import './index.css'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { CookiesProvider } from 'react-cookie'
+import { RecoilRoot } from 'recoil'
+import { BrowserRouter } from 'react-router-dom'
+import reportWebVitals from './reportWebVitals'
+import Router from './router/Router'
+import { GlobalStyle } from './styles/global-styles'
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement,
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient()
 
 root.render(
   <React.StrictMode>
@@ -20,15 +19,16 @@ root.render(
       <CookiesProvider defaultSetOptions={{ path: '/' }}>
         <RecoilRoot>
           <BrowserRouter>
+            <GlobalStyle />
             <Router />
           </BrowserRouter>
         </RecoilRoot>
       </CookiesProvider>
     </QueryClientProvider>
-  </React.StrictMode>,
-);
+  </React.StrictMode>
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals()
