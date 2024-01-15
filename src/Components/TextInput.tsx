@@ -1,14 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 type TextInputType = {
-  title: string;
-  value: string;
-  handleChange: React.Dispatch<React.SetStateAction<string>>;
-};
+  title: string
+  value: string
+  handleChange: React.Dispatch<React.SetStateAction<string>>
+}
 
 const TextInput = (props: TextInputType): JSX.Element => {
-  const { title, value, handleChange } = props;
+  const { title, value, handleChange } = props
 
   return (
     <InputContainer>
@@ -21,29 +21,29 @@ const TextInput = (props: TextInputType): JSX.Element => {
         placeholder="write here!"
       />
     </InputContainer>
-  );
-};
+  )
+}
 
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid red;
-`;
+  margin-bottom: 15px;
+`
 
 const InputBox = styled.input`
-  padding: 10px;
+  padding: 16px;
   margin: 10px 0;
   font-size: 16px;
-  border: 2px solid #efeff2;
-  border-radius: 5px;
+  border: 3px solid #efeff2;
+  border-radius: 8px;
   &:focus {
     outline: none;
   }
-`;
+`
 
 const StyledLabel = styled.label`
-  font-size: 16px;
-  font-weight: normal;
-`;
+  font-size: 20px;
+  font-weight: bold;
+`
 
-export default TextInput;
+export default TextInput

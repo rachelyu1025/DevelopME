@@ -1,9 +1,8 @@
-import React from 'react';
-import './App.css';
-import { Login } from './Pages/Login';
+import React from 'react'
+import './App.css'
 
 const App = () => {
-  return <Login />;
-};
+  return <></>
+}
 
-export default App;
+export default App
