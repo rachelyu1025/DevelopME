@@ -1,9 +1,9 @@
-import React from 'react';
-import './App.css';
-import { Login } from './Pages/Login';
+import React from 'react'
+import './App.css'
+import { GlobalStyle } from './styles/global-styles'
 
 const App = () => {
-  return <Login />;
-};
+  return <GlobalStyle />
+}
 
-export default App;
+export default App
