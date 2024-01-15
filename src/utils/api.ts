@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { getCookie } from './cookies';
-// import { cookies } from './cookies';
 
 const accessToken = getCookie('accessToken');
 const token = accessToken ? `Bearer ${accessToken}` : '';
