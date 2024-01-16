@@ -85,7 +85,7 @@ const ContentBox = styled.div`
 const InputContainer = styled.div`
   min-width: 250px;
   max-width: 80%;
-  margin-bottom: 10%;
+  margin: 10% 0;
 `
 
 const ButtonComp = styled.div`
