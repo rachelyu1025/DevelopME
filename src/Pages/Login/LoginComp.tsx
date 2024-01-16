@@ -62,10 +62,8 @@ export const LoginComp = (): JSX.Element => {
 }
 
 const Title = styled.h1`
-  display: block;
   font-weight: bolder;
-  font-size: 48px;
-  margin-bottom: 50px;
+  font-size: 36px;
 `
 const SignInContainer = styled.div`
   display: flex;
@@ -85,8 +83,9 @@ const ContentBox = styled.div`
 `
 
 const InputContainer = styled.div`
-  width: 90%;
-  margin-bottom: 30px;
+  min-width: 250px;
+  max-width: 80%;
+  margin-bottom: 10%;
 `
 
 const ButtonComp = styled.div`
@@ -98,13 +97,13 @@ const Button = styled.button`
   cursor: pointer;
   border: 0;
   border-radius: 99px;
-  width: 200px;
+  width: 150px;
   height: 60px;
   font-size: 18px;
   font-weight: bold;
   background-color: #773dfc;
   color: #fff;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 
   &:hover {
     opacity: 0.7;
@@ -115,7 +114,7 @@ const Button = styled.button`
 `
 
 const StyledLink = styled(Link)`
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   text-decoration: none;
   color: #a2a3b9;
