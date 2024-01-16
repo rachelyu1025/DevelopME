@@ -79,7 +79,7 @@ const ContentBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 50px;
-  height: 70%;
+  margin: 10% 0;
 `
 
 const InputContainer = styled.div`
