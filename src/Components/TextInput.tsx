@@ -32,8 +32,8 @@ const InputContainer = styled.div`
 
 const InputBox = styled.input`
   padding: 16px;
-  margin: 10px 0;
-  font-size: 16px;
+  margin-top: 10px;
+  font-size: 14px;
   border: 3px solid #efeff2;
   border-radius: 8px;
   &:focus {
@@ -42,8 +42,9 @@ const InputBox = styled.input`
 `
 
 const StyledLabel = styled.label`
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
+  margin-top: 10px;
 `
 
 export default TextInput
