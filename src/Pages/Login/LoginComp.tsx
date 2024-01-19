@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useAuthQuery } from '../../hooks/mutations/useAuthMutation'
-import TextInput from '../../Components/TextInput'
+import Input from '../../Components/Input'
 
 export const LoginComp = (): JSX.Element => {
   const [id, setId] = useState('')
@@ -29,15 +29,15 @@ export const LoginComp = (): JSX.Element => {
     <SignInContainer>
       <ContentBox>
         {/* Title */}
-        <Title>Sign In</Title>
+        <Title>로그인</Title>
 
         <InputContainer>
           {/* ID */}
-          <TextInput title="ID" value={id} handleChange={setId} />
+          <Input title="ID" value={id} handleChange={setId} />
 
           {/* Password */}
           <div>
-            <TextInput
+            <Input
               title="Password"
               value={password}
               handleChange={setPassword}
@@ -54,8 +54,17 @@ export const LoginComp = (): JSX.Element => {
             로그인
           </Button>
           {/* eslint-disable  */}
-          <StyledLink to="#">회원가입하러 가기</StyledLink>
+          <StyledLink to="/signUp">회원가입하러 가기</StyledLink>
         </ButtonComp>
+
+        <OauthContainer>
+          <Text>Login with</Text>
+          <OauthBox>
+            <button>G</button>
+            <button>N</button>
+            <button>K</button>
+          </OauthBox>
+        </OauthContainer>
       </ContentBox>
     </SignInContainer>
   )
@@ -78,8 +87,9 @@ const ContentBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 80%;
   padding: 50px;
-  height: 70%;
+  margin: 10% 0;
 `
 
 const InputContainer = styled.div`
@@ -124,4 +134,30 @@ const StyledLink = styled(Link)`
   &:hover {
     color: #773dfc;
   }
+`
+
+const OauthContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`
+
+const OauthBox = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  button {
+    margin-right: 10px;
+    border: 0;
+    border-radius: 50%;
+    padding: 12px 15px;
+    background-color: pink;
+  }
+`
+const Text = styled.span`
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b6b6b;
+  margin-right: 10px;
 `
