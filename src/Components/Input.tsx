@@ -48,7 +48,6 @@ const InputContainer = styled.div`
 
   div {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     margin-top: 10px;
   }
@@ -56,7 +55,7 @@ const InputContainer = styled.div`
 
 const InputBox = styled.input`
   min-width: 70%;
-  padding: 14px;
+  padding: 15px;
   font-size: 13px;
   border: 2px solid #efeff2;
   border-radius: 8px;
@@ -73,9 +72,8 @@ const StyledLabel = styled.label`
 
 const InputBtn = styled.button`
   min-width: 80px;
-  /* height: 50px; */
   padding: 15px;
-  margin: 0 5px;
+  margin: 0 20px;
   border: none;
   border-radius: 5px;
   font-size: 13px;
