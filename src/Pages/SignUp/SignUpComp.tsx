@@ -100,10 +100,8 @@ const Title = styled.h1`
   font-size: 32px;
 `
 const SignUpContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   min-width: 60vw;
+  height: 100vh;
   background-color: #fff;
 `
 
@@ -112,6 +110,7 @@ const ContentBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 50px;
+  height: 100%;
 `
 
 const InputContainer = styled.div`
@@ -123,6 +122,7 @@ const InputContainer = styled.div`
 const ButtonComp = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
 `
 
 const Button = styled.button`
@@ -151,7 +151,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: #a2a3b9;
   display: block;
-  padding-left: 10px;
+  padding: 0 10px;
 
   &:hover {
     color: #773dfc;
