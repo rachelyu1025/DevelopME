@@ -97,14 +97,13 @@ export const SignUpComp = (): JSX.Element => {
 
 const Title = styled.h1`
   font-weight: bolder;
-  font-size: 36px;
+  font-size: 32px;
 `
 const SignUpContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-width: 60vw;
-  /* height: 100vh; */
   background-color: #fff;
 `
 
