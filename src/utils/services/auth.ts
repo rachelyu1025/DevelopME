@@ -6,7 +6,7 @@ type SignInType = {
 };
 
 const postSignIn = async (params: SignInType) => {
-  return api.post(`/api/v1/users/login/`, params);
+  return api.post(`/api/login`, params);
 };
 
 export { postSignIn };
