@@ -48,7 +48,6 @@ const InputContainer = styled.div`
 
   div {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     margin-top: 10px;
   }
@@ -56,9 +55,9 @@ const InputContainer = styled.div`
 
 const InputBox = styled.input`
   min-width: 70%;
-  padding: 16px;
-  font-size: 14px;
-  border: 3px solid #efeff2;
+  padding: 15px;
+  font-size: 13px;
+  border: 2px solid #efeff2;
   border-radius: 8px;
   &:focus {
     outline: none;
@@ -66,16 +65,15 @@ const InputBox = styled.input`
 `
 
 const StyledLabel = styled.label`
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   margin-top: 10px;
 `
 
 const InputBtn = styled.button`
   min-width: 80px;
-  height: 50px;
-  padding: 10px 15px;
-  margin: 0 5px;
+  padding: 15px;
+  margin: 0 20px;
   border: none;
   border-radius: 5px;
   font-size: 13px;
