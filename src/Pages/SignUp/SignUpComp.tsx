@@ -153,6 +153,7 @@ const StyledLink = styled(Link)`
   display: block;
   padding: 0 10px;
 
+
   &:hover {
     color: #773dfc;
   }
