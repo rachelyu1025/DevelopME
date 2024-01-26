@@ -10,6 +10,7 @@ type InputType = {
   isButton?: boolean
   btnTitle?: string
   handleButton?: () => void
+  error?: string
 }
 
 const Input = (props: InputType): JSX.Element => {
@@ -22,11 +23,13 @@ const Input = (props: InputType): JSX.Element => {
     isButton,
     btnTitle,
     handleButton,
+    error,
   } = props
 
   return (
     <InputContainer>
       <StyledLabel htmlFor={`input-${title}`}>{title}</StyledLabel>
+
       <div>
         <InputBox
           id={`input-${title}`}
@@ -37,6 +40,12 @@ const Input = (props: InputType): JSX.Element => {
         />
         {isButton && <InputBtn onClick={handleButton}>{btnTitle}</InputBtn>}
       </div>
+
+      {error && (
+        <ErrorBox>
+          <span>{error}</span>
+        </ErrorBox>
+      )}
     </InputContainer>
   )
 }
@@ -88,4 +97,12 @@ const InputBtn = styled.button`
   }
 `
 
+const ErrorBox = styled.div`
+  span {
+    display: inline-block;
+    color: #ff0033;
+    font-size: 13px;
+    padding-left: 5px;
+  }
+`
 export default Input
