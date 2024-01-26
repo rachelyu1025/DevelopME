@@ -1,29 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 // import { useAuthQuery } from '../../hooks/mutations/useAuthMutation'
-import TextInput from '../../Components/Input'
+import { Id } from './components/Id'
+import { NickName } from './components/Nickname'
+import { Password } from './components/Password'
+import { Email } from './components/Email'
 
 export const SignUpComp = (): JSX.Element => {
-  const [id, setId] = useState('')
-  const [nickName, setNickName] = useState('')
-  const [password, setPassword] = useState('')
-  const [chkPswd, setChkPswd] = useState('') // 비밀번호 확인 input 값
-  const [email, setEmail] = useState('')
-
   // const { postSignInMutation } = useAuthQuery()
 
   // 회원가입 수행 함수
   const handleSignup = () => {}
 
   // id,pw Input 초기화
-  const handleResetInputs = () => {
-    setId('')
-    setNickName('')
-    setPassword('')
-    setChkPswd('')
-    setEmail('')
-  }
+  const handleResetInputs = () => {}
 
   useEffect(() => {
     handleResetInputs()
@@ -31,55 +22,23 @@ export const SignUpComp = (): JSX.Element => {
 
   return (
     <SignUpContainer>
-      <ContentBox>
-        {/* Title */}
-        <Title>회원가입</Title>
+      {/* Title */}
+      <Title>회원가입</Title>
 
+      <ContentBox>
         <InputContainer>
           {/* ID */}
 
-          <TextInput
-            title="ID"
-            value={id}
-            handleChange={setId}
-            textplace={'ID'}
-            isButton={true}
-            btnTitle="중복확인"
-            handleButton={() => {}}
-          />
+          <Id />
 
-          <TextInput
-            title="닉네임"
-            value={nickName}
-            handleChange={setNickName}
-            textplace={'NickName'}
-            isButton={true}
-            btnTitle="중복확인"
-            handleButton={() => {}}
-          />
+          {/* 닉네임 */}
+          <NickName />
+
           {/* Password */}
-          <div>
-            <TextInput
-              title="Password"
-              value={password}
-              handleChange={setPassword}
-              textplace={'password'}
-            />
-            <TextInput
-              title="Password 확인"
-              value={chkPswd}
-              handleChange={setChkPswd}
-              textplace={'password'}
-            />
-          </div>
+          <Password />
 
-          <TextInput
-            title="Email"
-            type="email"
-            value={email}
-            handleChange={setEmail}
-            textplace={'email'}
-          />
+          {/* Email */}
+          <Email />
         </InputContainer>
 
         {/* Button */}
@@ -103,14 +62,16 @@ const SignUpContainer = styled.div`
   min-width: 60vw;
   height: 100vh;
   background-color: #fff;
+  padding: 50px;
 `
 
 const ContentBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 50px;
   height: 100%;
+  min-width: 70%;
+  margin: 0 auto;
 `
 
 const InputContainer = styled.div`
@@ -123,6 +84,7 @@ const ButtonComp = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  padding: 0 10px;
 `
 
 const Button = styled.button`
@@ -152,7 +114,6 @@ const StyledLink = styled(Link)`
   color: #a2a3b9;
   display: block;
   padding: 0 10px;
-
 
   &:hover {
     color: #773dfc;
