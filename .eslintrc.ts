@@ -19,6 +19,7 @@ module.exports = {
   ],
   "rules": {
     "prettier/prettier" : "error",
+    "no-console": "error",
     "react/jsx-filename-extension": [
         1,
         { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
