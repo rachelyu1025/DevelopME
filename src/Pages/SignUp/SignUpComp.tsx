@@ -22,10 +22,10 @@ export const SignUpComp = (): JSX.Element => {
 
   return (
     <SignUpContainer>
-      {/* Title */}
-      <Title>회원가입</Title>
-
       <ContentBox>
+        {/* Title */}
+        <Title>회원가입</Title>
+
         <InputContainer>
           {/* ID */}
 
@@ -62,7 +62,7 @@ const SignUpContainer = styled.div`
   min-width: 60vw;
   height: 100vh;
   background-color: #fff;
-  padding: 50px;
+  padding: 50px 100px;
 `
 
 const ContentBox = styled.div`
@@ -70,13 +70,16 @@ const ContentBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  min-width: 70%;
+  min-width: 50%;
   margin: 0 auto;
+  padding: 0 10px;
+  background-color: #fff;
 `
 
 const InputContainer = styled.div`
-  min-width: 250px;
-  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   margin: 5% 0;
 `
 
@@ -84,26 +87,24 @@ const ButtonComp = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  padding: 0 10px;
 `
 
 const Button = styled.button`
   cursor: pointer;
   border: 0;
   border-radius: 99px;
-  width: 150px;
   height: 60px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   background-color: #773dfc;
   color: #fff;
-  margin-bottom: 10px;
+  padding: 0px 25px;
 
   &:hover {
     opacity: 0.7;
   }
   &:active {
-    width: 149px;
+    padding: 0px 26px;
   }
 `
 
@@ -113,7 +114,8 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: #a2a3b9;
   display: block;
-  padding: 0 10px;
+  margin-top: 10px;
+  margin-right: 10px;
 
   &:hover {
     color: #773dfc;
