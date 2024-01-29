@@ -49,13 +49,13 @@ export const LoginComp = (): JSX.Element => {
         </InputContainer>
 
         {/* Button */}
-        <ButtonComp>
+        <ButtonBox>
           <Button type="button" onClick={handleSingIn}>
             로그인
           </Button>
           {/* eslint-disable  */}
           <StyledLink to="/signUp">회원가입하러 가기</StyledLink>
-        </ButtonComp>
+        </ButtonBox>
 
         <OauthContainer>
           <Text>Login with</Text>
@@ -98,7 +98,7 @@ const InputContainer = styled.div`
   margin: 10% 0;
 `
 
-const ButtonComp = styled.div`
+const ButtonBox = styled.div`
   display: flex;
   flex-direction: column;
 `
