@@ -42,13 +42,13 @@ export const SignUpComp = (): JSX.Element => {
         </InputContainer>
 
         {/* Button */}
-        <ButtonComp>
+        <ButtonBox>
           <Button type="button" onClick={handleSignup}>
             인증요청
           </Button>
 
           <StyledLink to="/signIn">로그인하러 가기</StyledLink>
-        </ButtonComp>
+        </ButtonBox>
       </ContentBox>
     </SignUpContainer>
   )
@@ -62,7 +62,7 @@ const SignUpContainer = styled.div`
   min-width: 60vw;
   height: 100vh;
   background-color: #fff;
-  padding: 50px 100px;
+  padding: 50px 10%;
 `
 
 const ContentBox = styled.div`
@@ -83,7 +83,7 @@ const InputContainer = styled.div`
   margin: 5% 0;
 `
 
-const ButtonComp = styled.div`
+const ButtonBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -92,19 +92,19 @@ const ButtonComp = styled.div`
 const Button = styled.button`
   cursor: pointer;
   border: 0;
-  border-radius: 99px;
-  height: 60px;
+  border-radius: 5px;
   font-size: 16px;
   font-weight: bold;
   background-color: #773dfc;
   color: #fff;
-  padding: 0px 25px;
+  padding: 18px 28px;
 
   &:hover {
     opacity: 0.7;
   }
+
   &:active {
-    padding: 0px 26px;
+    padding: 0px 35px;
   }
 `
 

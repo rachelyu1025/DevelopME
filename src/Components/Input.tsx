@@ -64,7 +64,7 @@ const InputContainer = styled.div`
 
 const InputBox = styled.input`
   min-width: 250px;
-  width: 70%;
+  width: 80%;
   padding: 15px;
   margin-right: 20px;
   font-size: 13px;
