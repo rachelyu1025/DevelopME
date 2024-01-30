@@ -28,9 +28,7 @@ export const Id = (): JSX.Element => {
     setErrMsg('')
     setIsDisabled(true)
     return
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, isActive])
+  }, [id, isDisabled, setIsActive])
 
   useEffect(() => {
     setId('')
@@ -40,8 +38,7 @@ export const Id = (): JSX.Element => {
   useEffect(() => {
     if (isActive) {
       handleCheckID()
-      setIsActive(false)
-      return
+      return setIsActive(() => false)
     }
   }, [isActive, setIsActive, handleCheckID])
 
