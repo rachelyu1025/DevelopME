@@ -33,15 +33,11 @@ export const LoginComp = (): JSX.Element => {
 
         <InputContainer>
           {/* ID */}
-          <Input title="ID" value={id} handleChange={setId} />
+          <Input title="ID" value={id} setState={setId} />
 
           {/* Password */}
           <div>
-            <Input
-              title="Password"
-              value={password}
-              handleChange={setPassword}
-            />
+            <Input title="Password" value={password} setState={setPassword} />
 
             {/* eslint-disable  */}
             <StyledLink to="#">비밀번호 재설정</StyledLink>

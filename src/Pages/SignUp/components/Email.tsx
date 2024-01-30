@@ -28,7 +28,7 @@ export const Email = (): JSX.Element => {
       title="Email"
       type="email"
       value={email}
-      handleChange={setEmail}
+      setState={setEmail}
       textplace={'email'}
       isButton={true}
       btnTitle="중복확인"
