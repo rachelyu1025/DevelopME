@@ -1,34 +1,50 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Input from '../../../Components/Input'
+import { useRecoilState } from 'recoil'
+import { signUpState } from '../../../recoil/atoms/authState'
 
 export const Id = (): JSX.Element => {
   const [id, setId] = useState('')
   const [errMsg, setErrMsg] = useState('')
+  const [isActive, setIsActive] = useRecoilState(signUpState)
 
-  const handleCheckID = () => {
+  const handleCheckID = useCallback(() => {
     const regex = /^[a-zA-Z0-9]{5,10}$/
     const regexNum = /^[0-9]+$/
 
-    if (regexNum.test(id) || !regex.test(id))
-      return setErrMsg('영문,숫자를 포함하여 5 ~ 10자 이내로 입력하세요')
+    if (regexNum.test(id) || !regex.test(id)) {
+      setErrMsg('영문,숫자를 포함하여 5 ~ 10자 이내로 입력하세요')
+      setIsActive(false)
+      return
+    }
 
     // api요청 (error msg)
     // 성공 -> input disabled & 버튼 title 수정
     // setErrMsg 에 에러메세지 담기
 
     return setErrMsg('')
-  }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, isActive])
 
   useEffect(() => {
     setId('')
     setErrMsg('')
   }, [])
 
+  useEffect(() => {
+    if (isActive) {
+      handleCheckID()
+      setIsActive(false)
+      return
+    }
+  }, [isActive, setIsActive, handleCheckID])
+
   return (
     <Input
       title="ID"
       value={id}
-      handleChange={setId}
+      setState={setId}
       textplace={'ID'}
       isButton={true}
       btnTitle="중복확인"

@@ -6,12 +6,17 @@ import { Id } from './components/Id'
 import { NickName } from './components/Nickname'
 import { Password } from './components/Password'
 import { Email } from './components/Email'
+import { useSetRecoilState } from 'recoil'
+import { signUpState } from '../../recoil/atoms/authState'
 
 export const SignUpComp = (): JSX.Element => {
   // const { postSignInMutation } = useAuthQuery()
+  const setIsActive = useSetRecoilState(signUpState)
 
   // 회원가입 수행 함수
-  const handleSignup = () => {}
+  const handleSignup = () => {
+    setIsActive(true)
+  }
 
   // id,pw Input 초기화
   const handleResetInputs = () => {}
@@ -104,7 +109,7 @@ const Button = styled.button`
   }
 
   &:active {
-    padding: 0px 35px;
+    padding: 18px 29px;
   }
 `
 
