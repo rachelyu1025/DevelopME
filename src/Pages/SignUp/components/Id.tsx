@@ -6,11 +6,14 @@ import { signUpState } from '../../../recoil/atoms/authState'
 export const Id = (): JSX.Element => {
   const [id, setId] = useState('')
   const [errMsg, setErrMsg] = useState('')
+  const [isDisabled, setIsDisabled] = useState(false)
   const [isActive, setIsActive] = useRecoilState(signUpState)
 
   const handleCheckID = useCallback(() => {
     const regex = /^[a-zA-Z0-9]{5,10}$/
     const regexNum = /^[0-9]+$/
+
+    if (isDisabled) return
 
     if (regexNum.test(id) || !regex.test(id)) {
       setErrMsg('영문,숫자를 포함하여 5 ~ 10자 이내로 입력하세요')
@@ -22,7 +25,9 @@ export const Id = (): JSX.Element => {
     // 성공 -> input disabled & 버튼 title 수정
     // setErrMsg 에 에러메세지 담기
 
-    return setErrMsg('')
+    setErrMsg('')
+    setIsDisabled(true)
+    return
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, isActive])
@@ -50,6 +55,7 @@ export const Id = (): JSX.Element => {
       btnTitle="중복확인"
       handleButton={handleCheckID}
       error={errMsg}
+      disabled={isDisabled}
     />
   )
 }

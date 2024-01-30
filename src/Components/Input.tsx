@@ -11,6 +11,7 @@ type InputType = {
   btnTitle?: string
   handleButton?: () => void
   error?: string
+  disabled?: boolean
 }
 
 const Input = (props: InputType): JSX.Element => {
@@ -24,6 +25,7 @@ const Input = (props: InputType): JSX.Element => {
     btnTitle,
     handleButton,
     error,
+    disabled,
   } = props
 
   // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,6 +44,7 @@ const Input = (props: InputType): JSX.Element => {
           // onChange={e => handleChange(e)}
           onChange={e => setState(e.target.value)}
           placeholder={textplace || 'write here!'}
+          disabled={disabled}
         />
         {isButton && <InputBtn onClick={handleButton}>{btnTitle}</InputBtn>}
       </div>
