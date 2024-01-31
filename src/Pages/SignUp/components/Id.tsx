@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import Input from '../../../Components/Input'
 import { useRecoilState } from 'recoil'
 import { signUpState } from '../../../recoil/atoms/authState'
+import { useSignupMutation } from '../../../hooks/mutations/useSignupMutation'
 
 export const Id = (): JSX.Element => {
   const [id, setId] = useState('')
@@ -9,11 +10,12 @@ export const Id = (): JSX.Element => {
   const [isDisabled, setIsDisabled] = useState(false)
   const [isActive, setIsActive] = useRecoilState(signUpState)
 
-  const handleCheckID = useCallback(() => {
+  const { postCheckIdMutation } = useSignupMutation()
+
+  // ID 유효성검사 함수
+  const handleValidID = useCallback(() => {
     const regex = /^[a-zA-Z0-9]{5,10}$/
     const regexNum = /^[0-9]+$/
-
-    if (isDisabled) return
 
     if (regexNum.test(id) || !regex.test(id)) {
       setErrMsg('영문,숫자를 포함하여 5 ~ 10자 이내로 입력하세요')
@@ -21,36 +23,44 @@ export const Id = (): JSX.Element => {
       return
     }
 
-    // api요청 (error msg)
-    // 성공 -> input disabled & 버튼 title 수정
-    // setErrMsg 에 에러메세지 담기
-
     setErrMsg('')
     setIsDisabled(true)
     return
-  }, [id, isDisabled, setIsActive])
+  }, [id, setIsActive])
 
-  useEffect(() => {
-    setId('')
-    setErrMsg('')
-  }, [])
+  const handleCheckId = () => {
+    const data = { username: id }
 
-  useEffect(() => {
-    if (isActive) {
-      handleCheckID()
-      return setIsActive(() => false)
+    // 중복확인 -> 수정
+    if (isDisabled) {
+      return setIsDisabled(false)
     }
-  }, [isActive, setIsActive, handleCheckID])
+
+    // 유효성검사 함수 실행
+    handleValidID()
+
+    // id 중복검사 수행(api요청) 함수
+    postCheckIdMutation(data)
+    // 성공 -> input disabled & 버튼 title 수정
+    // setErrMsg 에 에러메세지 담기
+  }
+
+  useEffect(() => {
+    if (!isDisabled) {
+      setId('')
+      setErrMsg('')
+    }
+  }, [isDisabled])
 
   return (
     <Input
       title="ID"
       value={id}
-      setState={setId}
       textplace={'ID'}
       isButton={true}
-      btnTitle="중복확인"
-      handleButton={handleCheckID}
+      btnTitle={isDisabled ? '수정' : '중복확인'}
+      setState={setId}
+      handleButton={handleCheckId}
       error={errMsg}
       disabled={isDisabled}
     />
