@@ -1,14 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Input from '../../../Components/Input'
-import { useRecoilState } from 'recoil'
-import { signUpState } from '../../../recoil/atoms/authState'
+// import { useRecoilState } from 'recoil'
+// import { signUpState } from '../../../recoil/atoms/authState'
 import { useSignupMutation } from '../../../hooks/mutations/useSignupMutation'
 
 export const Id = (): JSX.Element => {
   const [id, setId] = useState('')
   const [errMsg, setErrMsg] = useState('')
   const [isDisabled, setIsDisabled] = useState(false)
-  const [isActive, setIsActive] = useRecoilState(signUpState)
+  // const [isActive, setIsActive] = useRecoilState(signUpState)
 
   const { postCheckIdMutation } = useSignupMutation({
     setErrMsg,
@@ -22,13 +22,13 @@ export const Id = (): JSX.Element => {
 
     if (regexNum.test(id) || !regex.test(id)) {
       setErrMsg('영문,숫자를 포함하여 5 ~ 10자 이내로 입력하세요')
-      setIsActive(false)
+      // setIsActive(false)
       return false
     }
 
     setErrMsg('')
     return true
-  }, [id, setIsActive])
+  }, [id])
 
   // id 중복확인 실행 함수
   const handleCheckId = () => {
