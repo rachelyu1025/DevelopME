@@ -10,24 +10,27 @@ export const Id = (): JSX.Element => {
   const [isDisabled, setIsDisabled] = useState(false)
   const [isActive, setIsActive] = useRecoilState(signUpState)
 
-  const { postCheckIdMutation } = useSignupMutation()
+  const { postCheckIdMutation } = useSignupMutation({
+    setErrMsg,
+    setIsDisabled,
+  })
 
   // ID 유효성검사 함수
-  const handleValidID = useCallback(() => {
-    const regex = /^[a-zA-Z0-9]{5,10}$/
+  const handleValidID = useCallback((): boolean => {
+    const regex = /^[a-z0-9]{5,10}$/
     const regexNum = /^[0-9]+$/
 
     if (regexNum.test(id) || !regex.test(id)) {
       setErrMsg('영문,숫자를 포함하여 5 ~ 10자 이내로 입력하세요')
       setIsActive(false)
-      return
+      return false
     }
 
     setErrMsg('')
-    setIsDisabled(true)
-    return
+    return true
   }, [id, setIsActive])
 
+  // id 중복확인 실행 함수
   const handleCheckId = () => {
     const data = { username: id }
 
@@ -37,10 +40,11 @@ export const Id = (): JSX.Element => {
     }
 
     // 유효성검사 함수 실행
-    handleValidID()
+    const isValidID = handleValidID()
 
     // id 중복검사 수행(api요청) 함수
-    postCheckIdMutation(data)
+    if (isValidID) postCheckIdMutation(data)
+    else return
     // 성공 -> input disabled & 버튼 title 수정
     // setErrMsg 에 에러메세지 담기
   }
