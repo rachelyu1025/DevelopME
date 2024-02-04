@@ -12,6 +12,7 @@ type InputType = {
   handleButton?: () => void
   error?: string
   disabled?: boolean
+  isValid?: (id: string) => void
 }
 
 const Input = (props: InputType): JSX.Element => {
@@ -26,11 +27,14 @@ const Input = (props: InputType): JSX.Element => {
     handleButton,
     error,
     disabled,
+    isValid,
   } = props
 
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   return setState(e.target.value)
-  // }
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setState(() => e.target.value)
+
+    if (isValid) isValid(e.target.value)
+  }
 
   return (
     <InputContainer>
@@ -41,8 +45,7 @@ const Input = (props: InputType): JSX.Element => {
           id={`input-${title}`}
           type={type || 'text'}
           value={value}
-          // onChange={e => handleChange(e)}
-          onChange={e => setState(e.target.value)}
+          onChange={e => handleChangeInput(e)}
           placeholder={textplace || 'write here!'}
           disabled={disabled}
         />

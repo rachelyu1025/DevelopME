@@ -16,19 +16,17 @@ export const Id = (): JSX.Element => {
   })
 
   // ID 유효성검사 함수
-  const handleValidID = useCallback((): boolean => {
+  const handleValidID = useCallback((typedId: string) => {
     const regex = /^[a-z0-9]{5,10}$/
     const regexNum = /^[0-9]+$/
 
-    if (regexNum.test(id) || !regex.test(id)) {
-      setErrMsg('영문,숫자를 포함하여 5 ~ 10자 이내로 입력하세요')
+    if (regexNum.test(typedId) || !regex.test(typedId)) {
+      return setErrMsg('영문,숫자를 포함하여 5 ~ 10자 이내로 입력하세요')
       // setIsActive(false)
-      return false
     }
 
-    setErrMsg('')
-    return true
-  }, [id])
+    return setErrMsg('')
+  }, [])
 
   // id 중복확인 실행 함수
   const handleCheckId = () => {
@@ -39,22 +37,14 @@ export const Id = (): JSX.Element => {
       return setIsDisabled(false)
     }
 
-    // 유효성검사 함수 실행
-    const isValidID = handleValidID()
-
     // id 중복검사 수행(api요청) 함수
-    if (isValidID) postCheckIdMutation(data)
-    else return
-    // 성공 -> input disabled & 버튼 title 수정
-    // setErrMsg 에 에러메세지 담기
+    if (errMsg === '') postCheckIdMutation(data)
   }
 
   useEffect(() => {
-    if (!isDisabled) {
-      setId('')
-      setErrMsg('')
-    }
-  }, [isDisabled])
+    setId('')
+    setErrMsg('')
+  }, [])
 
   return (
     <Input
@@ -64,6 +54,7 @@ export const Id = (): JSX.Element => {
       isButton={true}
       btnTitle={isDisabled ? '수정' : '중복확인'}
       setState={setId}
+      isValid={handleValidID}
       handleButton={handleCheckId}
       error={errMsg}
       disabled={isDisabled}
