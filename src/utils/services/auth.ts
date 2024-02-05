@@ -22,4 +22,8 @@ const postCheckNickName = async (params: {nickname: string}) => {
   return api.post(`/api/members/nickname/check`, params);
 };
 
-export { postSignIn, postCheckId, postCheckNickName };
+const postCheckEmail = async (params: {email: string}) => {
+  return api.post(`/api/members/email/check`, params);
+};
+
+export { postSignIn, postCheckId, postCheckNickName, postCheckEmail };
