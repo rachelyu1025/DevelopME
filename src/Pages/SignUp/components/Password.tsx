@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Input from '../../../Components/Input'
 
 export const Password = (): JSX.Element => {
@@ -7,24 +7,26 @@ export const Password = (): JSX.Element => {
   const [pwErrMsg, setPwErrMsg] = useState('') // 비밀번호 입력 input error message
   const [chkErrMsg, setChkErrMsg] = useState('') // 비밀번호 확인 input error message
 
-  // 메일 인증요청 버튼 클릭 시
-  // password regex 확인
-  // chkPassword 값이 password 와 같은지 비교
-
-  const handlePassword = () => {
+  // password 유효성검사 함수
+  const handleValidPw = useCallback((typedPw: string) => {
     const regex =
       /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/
 
-    if (!regex.test(password))
+    if (!regex.test(typedPw))
       return setPwErrMsg(
         '영문,숫자,특수문자를 포함하여 8 ~ 20자 이내로 입력하세요'
       )
 
-    // api요청 (error msg)
-    // 성공 -> input disabled & 버튼 title 수정
-    // setErrMsg 에 에러메세지 담기
-
     return setPwErrMsg('')
+  }, [])
+
+  const handleCheckPassword = (typedPw: string) => {
+    console.log(typedPw, password, typedPw !== password)
+    if (typedPw !== password) {
+      return setChkErrMsg('비밀번호가 일치하지 않습니다.')
+    }
+
+    return setChkErrMsg('')
   }
 
   useEffect(() => {
@@ -38,15 +40,20 @@ export const Password = (): JSX.Element => {
     <div>
       <Input
         title="Password"
+        type="password"
         value={password}
-        handleChange={setPassword}
+        setState={setPassword}
+        isValid={handleValidPw}
         textplace={'password'}
         error={pwErrMsg}
       />
+
       <Input
         title="Password 확인"
+        type="password"
         value={chkPswd}
-        handleChange={setChkPswd}
+        setState={setChkPswd}
+        isValid={handleCheckPassword}
         textplace={'password'}
         error={chkErrMsg}
       />
