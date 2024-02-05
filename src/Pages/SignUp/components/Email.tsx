@@ -1,24 +1,43 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Input from '../../../Components/Input'
+import { useSignupMutation } from '../../../hooks/mutations/useSignupMutation'
 
 export const Email = (): JSX.Element => {
   const [email, setEmail] = useState('')
   const [errMsg, setErrMsg] = useState('')
+  const [isDisabled, setIsDisabled] = useState(false)
 
-  const handleChkEmail = () => {
-    const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/
+  const { postCheckEmailMutation } = useSignupMutation({
+    setErrMsg,
+    setIsDisabled,
+  })
 
-    if (!email.length && !regex.test(email))
+  // email 유효성검사 함수
+  const handleValidEmail = useCallback((typedEmail: string) => {
+    const regex = /^[A-Za-z0-9_.-]+@[A-Za-z0-9-]+\.[A-za-z0-9-]+/
+
+    if (!regex.test(typedEmail)) {
       return setErrMsg('이메일 형식에 맞게 입력해주세요.')
-
-    // api요청 (error msg)
-    // 성공 -> input disabled & 버튼 title 수정
-    // setErrMsg 에 에러메세지 담기
+    }
 
     return setErrMsg('')
+  }, [])
+
+  // email 중복확인 실행 함수
+  const handleCheckEmail = () => {
+    const data = { email }
+
+    // 중복확인 -> 수정
+    if (isDisabled) {
+      return setIsDisabled(false)
+    }
+
+    // id 중복검사 수행(api요청) 함수
+    if (errMsg === '') postCheckEmailMutation(data)
   }
 
   useEffect(() => {
+    // 초기화
     setEmail('')
     setErrMsg('')
   }, [])
@@ -28,12 +47,14 @@ export const Email = (): JSX.Element => {
       title="Email"
       type="email"
       value={email}
-      setState={setEmail}
       textplace={'email'}
       isButton={true}
-      btnTitle="중복확인"
-      handleButton={handleChkEmail}
+      btnTitle={isDisabled ? '수정' : '중복확인'}
+      setState={setEmail}
+      isValid={handleValidEmail}
+      handleButton={handleCheckEmail}
       error={errMsg}
+      disabled={isDisabled}
     />
   )
 }
