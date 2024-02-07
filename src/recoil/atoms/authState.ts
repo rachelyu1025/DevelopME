@@ -14,6 +14,16 @@ const signUpState = atom({
   default:  false
 })
 
+const signupInfoState = atom ({
+  key: 'signupInfoState',
+    default: {
+    id: '',
+    nickName: '',
+    password: '',
+    email: ''
+  }
+})
+
 const signupInfoCheckState = atom<SignupInfoStateType>({
     key: 'signupInfoCheckState',
     default: {
@@ -34,4 +44,4 @@ const tokenState = atom({
   },
 });
 
-export { signUpState,signupInfoCheckState, tokenState };
+export { signUpState,signupInfoState, signupInfoCheckState, tokenState };

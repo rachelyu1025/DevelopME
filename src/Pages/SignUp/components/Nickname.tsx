@@ -3,12 +3,16 @@ import Input from '../../../Components/Input'
 // import { useRecoilState } from 'recoil'
 // import { signUpState } from '../../../recoil/atoms/authState'
 import { useSignupMutation } from '../../../hooks/mutations/useSignupMutation'
+import { useSetRecoilState } from 'recoil'
+import { signupInfoState } from '../../../recoil/atoms/authState'
 
 export const NickName = (): JSX.Element => {
   const [nickName, setNickName] = useState('')
   const [errMsg, setErrMsg] = useState('')
   const [isDisabled, setIsDisabled] = useState(false)
   // const [isActive, setIsActive] = useRecoilState(signUpState)
+
+  const setSignupInfo = useSetRecoilState(signupInfoState)
 
   const { postCheckNNameMutation } = useSignupMutation({
     setErrMsg,
@@ -37,6 +41,8 @@ export const NickName = (): JSX.Element => {
 
     // id 중복검사 수행(api요청) 함수
     if (errMsg === '') postCheckNNameMutation(data)
+
+    setSignupInfo(prev => ({ ...prev, nickName }))
   }
 
   useEffect(() => {

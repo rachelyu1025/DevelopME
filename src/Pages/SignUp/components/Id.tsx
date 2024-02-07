@@ -1,14 +1,17 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Input from '../../../Components/Input'
-// import { useRecoilState } from 'recoil'
 // import { signUpState } from '../../../recoil/atoms/authState'
 import { useSignupMutation } from '../../../hooks/mutations/useSignupMutation'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { signUpState, signupInfoState } from '../../../recoil/atoms/authState'
 
 export const Id = (): JSX.Element => {
   const [id, setId] = useState('')
   const [errMsg, setErrMsg] = useState('')
   const [isDisabled, setIsDisabled] = useState(false)
-  // const [isActive, setIsActive] = useRecoilState(signUpState)
+
+  const setSignupInfo = useSetRecoilState(signupInfoState)
+  const isSignupBtnActive = useRecoilValue(signUpState)
 
   const { postCheckIdMutation } = useSignupMutation({
     setErrMsg,
@@ -39,6 +42,8 @@ export const Id = (): JSX.Element => {
 
     // id 중복검사 수행(api요청) 함수
     if (errMsg === '') postCheckIdMutation(data)
+
+    setSignupInfo(prev => ({ ...prev, id }))
   }
 
   useEffect(() => {
