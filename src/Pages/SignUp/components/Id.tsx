@@ -1,22 +1,44 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Input from '../../../Components/Input'
+// import { useRecoilState } from 'recoil'
+// import { signUpState } from '../../../recoil/atoms/authState'
+import { useSignupMutation } from '../../../hooks/mutations/useSignupMutation'
 
 export const Id = (): JSX.Element => {
   const [id, setId] = useState('')
   const [errMsg, setErrMsg] = useState('')
+  const [isDisabled, setIsDisabled] = useState(false)
+  // const [isActive, setIsActive] = useRecoilState(signUpState)
 
-  const handleCheckID = () => {
-    const regex = /^[a-zA-Z0-9]{5,10}$/
+  const { postCheckIdMutation } = useSignupMutation({
+    setErrMsg,
+    setIsDisabled,
+  })
+
+  // ID 유효성검사 함수
+  const handleValidID = useCallback((typedId: string) => {
+    const regex = /^[a-z0-9]{5,10}$/
     const regexNum = /^[0-9]+$/
 
-    if (regexNum.test(id) || !regex.test(id))
+    if (regexNum.test(typedId) || !regex.test(typedId)) {
       return setErrMsg('영문,숫자를 포함하여 5 ~ 10자 이내로 입력하세요')
-
-    // api요청 (error msg)
-    // 성공 -> input disabled & 버튼 title 수정
-    // setErrMsg 에 에러메세지 담기
+      // setIsActive(false)
+    }
 
     return setErrMsg('')
+  }, [])
+
+  // id 중복확인 실행 함수
+  const handleCheckId = () => {
+    const data = { username: id }
+
+    // 중복확인 -> 수정
+    if (isDisabled) {
+      return setIsDisabled(false)
+    }
+
+    // id 중복검사 수행(api요청) 함수
+    if (errMsg === '') postCheckIdMutation(data)
   }
 
   useEffect(() => {
@@ -28,12 +50,14 @@ export const Id = (): JSX.Element => {
     <Input
       title="ID"
       value={id}
-      handleChange={setId}
       textplace={'ID'}
       isButton={true}
-      btnTitle="중복확인"
-      handleButton={handleCheckID}
+      btnTitle={isDisabled ? '수정' : '중복확인'}
+      setState={setId}
+      isValid={handleValidID}
+      handleButton={handleCheckId}
       error={errMsg}
+      disabled={isDisabled}
     />
   )
 }
