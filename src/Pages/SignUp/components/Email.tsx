@@ -37,7 +37,7 @@ export const Email = (): JSX.Element => {
     }
 
     // id 중복검사 수행(api요청) 함수
-    if (errMsg === '') postCheckEmailMutation(data)
+    if (email && errMsg === '') postCheckEmailMutation(data)
 
     setSignupInfo(prev => ({ ...prev, email }))
   }
