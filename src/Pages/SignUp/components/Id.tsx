@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Input from '../../../Components/Input'
-// import { signUpState } from '../../../recoil/atoms/authState'
 import { useSignupMutation } from '../../../hooks/mutations/useSignupMutation'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { signUpState, signupInfoState } from '../../../recoil/atoms/authState'
+import { useSetRecoilState } from 'recoil'
+import { signupInfoState } from '../../../recoil/atoms/authState'
 
 export const Id = (): JSX.Element => {
   const [id, setId] = useState('')
@@ -11,7 +10,6 @@ export const Id = (): JSX.Element => {
   const [isDisabled, setIsDisabled] = useState(false)
 
   const setSignupInfo = useSetRecoilState(signupInfoState)
-  const isSignupBtnActive = useRecoilValue(signUpState)
 
   const { postCheckIdMutation } = useSignupMutation({
     setErrMsg,
@@ -25,7 +23,6 @@ export const Id = (): JSX.Element => {
 
     if (regexNum.test(typedId) || !regex.test(typedId)) {
       return setErrMsg('영문,숫자를 포함하여 5 ~ 10자 이내로 입력하세요')
-      // setIsActive(false)
     }
 
     return setErrMsg('')

@@ -7,19 +7,13 @@ export interface SignupInfoStateType {
   email: boolean
 }
 
-
-// 회원가입
-const signUpState = atom({
-  key: 'signUpState',
-  default:  false
-})
-
 const signupInfoState = atom ({
   key: 'signupInfoState',
     default: {
     username: '',
     nickname: '',
-    password: '',
+    password1: '',
+    password2: '',
     email: ''
   }
 })
@@ -34,7 +28,6 @@ const signupInfoCheckState = atom<SignupInfoStateType>({
   }
   })
 
-
 // 토큰
 const tokenState = atom({
   key: 'tokenState',
@@ -44,4 +37,4 @@ const tokenState = atom({
   },
 });
 
-export { signUpState,signupInfoState, signupInfoCheckState, tokenState };
+export { signupInfoState, signupInfoCheckState, tokenState };

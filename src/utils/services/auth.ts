@@ -1,6 +1,6 @@
 import { api } from '../api';
 
-type SignInType = {
+interface SignInType {
   username: string;
   password: string;
 };
@@ -8,7 +8,8 @@ type SignInType = {
 interface SignUpInfoType {
   username: string
   nickname: string
-  password: string
+  password1: string
+  password2: string
   email: string
 }
 

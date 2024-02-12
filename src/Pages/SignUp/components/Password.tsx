@@ -1,7 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Input from '../../../Components/Input'
 import { useSetRecoilState } from 'recoil'
-import { signupInfoState } from '../../../recoil/atoms/authState'
+import {
+  signupInfoCheckState,
+  signupInfoState,
+} from '../../../recoil/atoms/authState'
 
 export const Password = (): JSX.Element => {
   const [password, setPassword] = useState('')
@@ -10,6 +13,7 @@ export const Password = (): JSX.Element => {
   const [chkErrMsg, setChkErrMsg] = useState('') // 비밀번호 확인 input error message
 
   const setSignupInfo = useSetRecoilState(signupInfoState)
+  const setInfoCheckState = useSetRecoilState(signupInfoCheckState)
 
   // password 유효성검사 함수
   const handleValidPw = useCallback((typedPw: string) => {
@@ -29,7 +33,13 @@ export const Password = (): JSX.Element => {
       return setChkErrMsg('비밀번호가 일치하지 않습니다.')
     }
 
-    setSignupInfo(prev => ({ ...prev, password }))
+    setSignupInfo(prev => ({
+      ...prev,
+      password1: typedPw,
+      password2: typedPw,
+    }))
+    setInfoCheckState(prev => ({ ...prev, password: true }))
+
     return setChkErrMsg('')
   }
 
