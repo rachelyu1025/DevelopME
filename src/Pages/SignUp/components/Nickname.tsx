@@ -3,12 +3,15 @@ import Input from '../../../Components/Input'
 // import { useRecoilState } from 'recoil'
 // import { signUpState } from '../../../recoil/atoms/authState'
 import { useSignupMutation } from '../../../hooks/mutations/useSignupMutation'
+import { useSetRecoilState } from 'recoil'
+import { signupInfoState } from '../../../recoil/atoms/authState'
 
 export const NickName = (): JSX.Element => {
   const [nickName, setNickName] = useState('')
   const [errMsg, setErrMsg] = useState('')
   const [isDisabled, setIsDisabled] = useState(false)
-  // const [isActive, setIsActive] = useRecoilState(signUpState)
+
+  const setSignupInfo = useSetRecoilState(signupInfoState)
 
   const { postCheckNNameMutation } = useSignupMutation({
     setErrMsg,
@@ -18,9 +21,8 @@ export const NickName = (): JSX.Element => {
   const handleValidName = useCallback((typedName: string) => {
     const regex = /^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/ //한글,영어,숫자만 허용
 
-    if (!regex.test(typedName)) {
+    if (!regex.test(typedName) || !typedName) {
       return setErrMsg('한글/영문/숫자를 이용한 닉네임을 입력해주세요.')
-      // setIsActive(false)
     }
 
     return setErrMsg('')
@@ -36,7 +38,9 @@ export const NickName = (): JSX.Element => {
     }
 
     // id 중복검사 수행(api요청) 함수
-    if (errMsg === '') postCheckNNameMutation(data)
+    if (nickName && errMsg === '') postCheckNNameMutation(data)
+
+    setSignupInfo(prev => ({ ...prev, nickname: nickName }))
   }
 
   useEffect(() => {

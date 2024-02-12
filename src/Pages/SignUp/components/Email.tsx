@@ -1,11 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { useSetRecoilState } from 'recoil'
 import Input from '../../../Components/Input'
 import { useSignupMutation } from '../../../hooks/mutations/useSignupMutation'
+import { signupInfoState } from '../../../recoil/atoms/authState'
 
 export const Email = (): JSX.Element => {
   const [email, setEmail] = useState('')
   const [errMsg, setErrMsg] = useState('')
   const [isDisabled, setIsDisabled] = useState(false)
+
+  const setSignupInfo = useSetRecoilState(signupInfoState)
 
   const { postCheckEmailMutation } = useSignupMutation({
     setErrMsg,
@@ -33,7 +37,9 @@ export const Email = (): JSX.Element => {
     }
 
     // id 중복검사 수행(api요청) 함수
-    if (errMsg === '') postCheckEmailMutation(data)
+    if (email && errMsg === '') postCheckEmailMutation(data)
+
+    setSignupInfo(prev => ({ ...prev, email }))
   }
 
   useEffect(() => {
