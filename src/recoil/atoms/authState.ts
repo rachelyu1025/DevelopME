@@ -17,8 +17,8 @@ const signUpState = atom({
 const signupInfoState = atom ({
   key: 'signupInfoState',
     default: {
-    id: '',
-    nickName: '',
+    username: '',
+    nickname: '',
     password: '',
     email: ''
   }

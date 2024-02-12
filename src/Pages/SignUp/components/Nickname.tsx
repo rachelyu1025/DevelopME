@@ -42,7 +42,7 @@ export const NickName = (): JSX.Element => {
     // id 중복검사 수행(api요청) 함수
     if (errMsg === '') postCheckNNameMutation(data)
 
-    setSignupInfo(prev => ({ ...prev, nickName }))
+    setSignupInfo(prev => ({ ...prev, nickname: nickName }))
   }
 
   useEffect(() => {

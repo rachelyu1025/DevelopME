@@ -43,7 +43,7 @@ export const Id = (): JSX.Element => {
     // id 중복검사 수행(api요청) 함수
     if (errMsg === '') postCheckIdMutation(data)
 
-    setSignupInfo(prev => ({ ...prev, id }))
+    setSignupInfo(prev => ({ ...prev, username: id }))
   }
 
   useEffect(() => {
